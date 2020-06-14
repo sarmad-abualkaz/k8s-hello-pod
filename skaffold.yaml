@@ -1,0 +1,24 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+build:
+  artifacts:
+  - image: k8s-hello-pod
+    kaniko:
+      cache: {}
+      dockerfile: docker/Dockerfile
+  cluster:
+    annotations:
+      sidecar.istio.io/inject: "false"
+    dockerConfig: 
+      secretName: builder-config
+deploy:
+  helm:
+    releases:
+    - name: k8-hello-pod
+      chartPath: charts/k8s-hello-pod
+      setValueTemplates:
+        image.repository: '{{.IMAGE_REPO}}'
+        image.tag: '{{.DIGEST_HEX}}'
+        imagePullSecrets[0].name: '{{.SK8_PULL_SECRETS}}'
+        image.pullPolicy: Always
+        env.clusterID: '{{.MY_CLUSTER_ID}}'

@@ -1,0 +1,11 @@
+.editorconfig
+.git
+.DS_Store
+AUTHORS.md
+README.md
+Makefile
+.dockerignore
+docker
+charts
+./docker/*
+./charts/*
