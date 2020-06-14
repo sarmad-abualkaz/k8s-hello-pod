@@ -13,11 +13,7 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
-<<<<<<< HEAD
 
 .DS_Store
 build/
 test/*
-
-=======
->>>>>>> c8afde43438359c385012aad909b694d4ee3466b
